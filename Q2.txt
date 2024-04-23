@@ -1,0 +1,27 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main() {
+    
+    srand(time(NULL));
+int daysUntilExpiration = rand()%11;
+
+switch (daysUntilExpiration){
+
+case 1:(daysUntilExpiration < 1);
+    cout << "Your subscription has expired";
+    break;
+case 2: (daysUntilExpiration == 1);
+    cout << "Yoursubcription expires within a day!\n Renew now and save 20%!";
+    break;
+case 3: (daysUntilExpiration <= 5);
+    cout << "Your subscription expires in "<<daysUntilExpiration << " days\n Renew now and save 10%!";
+    break;
+case 4: (daysUntilExpiration <= 10);
+    cout << "Your subscription will expire soon. Renew now";
+    break;
+default: (daysUntilExpiration > 10);
+cout <<"You have an active subscription";
+}
+}
