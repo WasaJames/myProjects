@@ -1,0 +1,88 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cctype>
+
+using namespace std;
+
+// Function to count vowels
+int countVowels(const string& str) {
+    int count = 0;
+    for (char ch : str) {
+        if (tolower(ch) == 'a' || tolower(ch) == 'e' || tolower(ch) == 'i' || tolower(ch) == 'o' || tolower(ch) == 'u') {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Function to count words
+int countWords(const string& str) {
+    int count = 0;
+    bool inWord = false;
+    for (char ch : str) {
+        if (isspace(ch)) {
+            inWord = false;
+        } else if (!inWord) {
+            count++;
+            inWord = true;
+        }
+    }
+    return count;
+}
+
+// Function to reverse a string
+string reverse(const string& str) {
+    string reversed;
+    for (int i = str.size() - 1; i >= 0; --i) {
+        reversed.push_back(str[i]);
+    }
+    return reversed;
+}
+
+// Function to capitalize the second letter of each word
+string capitalizeSecondLetter(const string& str) {
+    string result = str;
+    bool capitalize = false;
+    for (char& ch : result) {
+        if (isalpha(ch)) {
+            if (capitalize) {
+                ch = toupper(ch);
+                capitalize = false;
+            }
+            capitalize = !capitalize;
+        }
+    }
+    return result;
+}
+
+int main() {
+    string fileData;
+
+    // Open the file and read its contents
+    ifstream inputFile("text_file.txt");
+    if (inputFile.is_open()) {
+        getline(inputFile, fileData);
+        inputFile.close();
+
+        // Calculate and output number of vowels
+        int numVowels = countVowels(fileData);
+        cout << "Number of vowels: " << numVowels << endl;
+
+        // Calculate and output number of words
+        int numWords = countWords(fileData);
+        cout << "Number of words: " << numWords << endl;
+
+        // Output the reversed statement
+        string reversedStatement = reverse(fileData);
+        cout << "Reversed statement: " << reversedStatement << endl;
+
+        // Output the statement with the second letter capitalized
+        string capitalizedStatement = capitalizeSecondLetter(fileData);
+        cout << "Capitalized statement: " << capitalizedStatement << endl;
+    } else {
+        cerr << "Unable to open file." << endl;
+    }
+
+    return 0;
+}
