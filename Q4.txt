@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int n;
+    
+    // Prompt the user for an integer value between 5 and 10
+    cout << "Please enter an integer value between 5 and 10: ";
+    cin >> n;
+    
+    // Validate the input and repeat until it's within the specified range
+    while (true) {
+        if (cin.fail()){
+        cout << "Sorry, you entered an invalid input, please try again"<<endl;
+            cin.clear();
+        cin.ignore(50, '\n');
+        cin >>n;
+        }
+     else if(n < 5 || n > 10){
+         cout << "You entered "<< n<< ". Please enter an integer value between 5 and 10: ";
+        cin >> n;
+    }
+     else if(n >= 5 && n <= 10)
+     break;
+    }
+   
+    cout << "Your input value " << n << " has been accepted." << endl;
+
+    
+    return 0;
+}
